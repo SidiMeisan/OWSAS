@@ -50,5 +50,5 @@ You can initialize this repository with code from a Subversion, Mercurial, or TF
 #####You can now access your project at localhost:8000 :)
 
 #If for some reason your project stop working do these:
-composer install
-php artisan migrate
+- composer install
+- php artisan migrate
