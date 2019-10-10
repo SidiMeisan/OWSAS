@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateApplicationTable extends Migration
+class CreateUniadminTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateApplicationTable extends Migration
      */
     public function up()
     {
-        Schema::create('application', function (Blueprint $table) {
+        Schema::create('uniadmin', function (Blueprint $table) {
 		$table->bigIncrements('id');
-		$table->date('applicationdate');
-		$table->string('status');
+		$table->integer('users_id');
+		$table->integer('university_id');
             	$table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateApplicationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('application');
+        Schema::dropIfExists('uniadmin');
     }
 }

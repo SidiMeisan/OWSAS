@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateApplicationTable extends Migration
+class CreateProgrammeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateApplicationTable extends Migration
      */
     public function up()
     {
-        Schema::create('application', function (Blueprint $table) {
+        Schema::create('programme', function (Blueprint $table) {
 		$table->bigIncrements('id');
-		$table->date('applicationdate');
-		$table->string('status');
+		$table->string('programmename');
+		$table->string('description');
+		$table->date('closingdate');
             	$table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateApplicationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('application');
+        Schema::dropIfExists('programme');
     }
 }
