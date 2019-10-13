@@ -15,6 +15,7 @@ class CreateProgrammeTable extends Migration
     {
         Schema::create('programme', function (Blueprint $table) {
 		$table->bigIncrements('id');
+		$table->integer('university_id');
 		$table->string('programmename');
 		$table->string('description');
 		$table->date('closingdate');

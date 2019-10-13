@@ -17,7 +17,7 @@ class CreateQualificationobtainedTable extends Migration
 		$table->bigIncrements('id');
 		$table->integer('overallscore');
 		$table->integer('users_id');
-		$table->integer('resul_id');
+		$table->integer('result_id');
 		$table->integer('qualification_id');
             	$table->timestamps();
         });
