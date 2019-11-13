@@ -14,10 +14,11 @@ class CreateApplicationTable extends Migration
     public function up()
     {
         Schema::create('application', function (Blueprint $table) {
-		$table->bigIncrements('id');
-		$table->date('applicationdate');
-		$table->string('status');
-            	$table->timestamps();
+            $table->bigIncrements('id');
+            $table->integer('applicant_id');
+            $table->date('applicationdate');
+            $table->string('status');
+            $table->timestamps();
         });
     }
 

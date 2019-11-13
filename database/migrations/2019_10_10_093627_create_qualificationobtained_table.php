@@ -16,7 +16,7 @@ class CreateQualificationobtainedTable extends Migration
         Schema::create('qualificationobtained', function (Blueprint $table) {
 		$table->bigIncrements('id');
 		$table->integer('overallscore');
-		$table->integer('users_id');
+		$table->integer('applicant_id');
 		$table->integer('result_id');
 		$table->integer('qualification_id');
             	$table->timestamps();
