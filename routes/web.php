@@ -14,3 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+/*
+	This is admin OWSAS 
+*/
+
+// User
+Route::get('/user','User@user');
+Route::get('/user/add','User@user');
+
+
+
+Route::get('/qualification','QualificationController@index');
+
