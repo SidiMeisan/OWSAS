@@ -14,13 +14,13 @@ class CreateQualificationTable extends Migration
     public function up()
     {
         Schema::create('qualification', function (Blueprint $table) {
-		$table->bigIncrements('id');
-		$table->string('qulificatiionName');
-		$table->integer('minimumScore');
-		$table->integer('maximumScore');
-		$table->string('resultCalcDescription');
-		$table->string('gradelist');
-            	$table->timestamps();
+            $table->bigIncrements('id');
+            $table->string('qulificatiionName');
+            $table->integer('minimumScore');
+            $table->integer('maximumScore');
+            $table->string('resultCalcDescription');
+            $table->string('gradelist');
+            $table->timestamps();
         });
     }
 
