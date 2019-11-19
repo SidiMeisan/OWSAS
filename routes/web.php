@@ -14,3 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+//stub
+//Route::get('/login', 'LoginController@getLogin')->middleware('guest');
+//Route::post('/login', 'LoginController@postLogin');
+//Route::get('/logout', 'LoginController@logout');;
+
+//Route::get('/login', function () {
+//    return view('stub/login');
+//});
+
+Auth::routes();
