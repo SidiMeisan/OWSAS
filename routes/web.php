@@ -20,18 +20,16 @@ Route::get('/', function () {
 */
 
 // User
-Route::get('/user','User@user');
-Route::get('/user/add','User@user');
+//Route::get('/user','User@user');
+//Route::get('/user/add','User@user');
 
 
 
-Route::get('/qualification','QualificationController@index');
+//Route::get('/qualification','QualificationController@index');
 
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -21,8 +23,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
     public function index()
     {
-        return view('home');
+        $getLevel = Auth::user()->getLevel();
+        if ($getLevel == "Admin") {
+            return view('admin/home');
+        }elseif ($getLevel == "AdminUni") {
+            return view('university/home');
+        }else{
+            return view('applicant/home');
+        }
     }
 }
