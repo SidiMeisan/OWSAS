@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'name', 'email', 'password', 'level'
+        'username', 'name', 'email', 'password', 'level',
     ];
 
     /**
@@ -40,7 +40,7 @@ class User extends Authenticatable
     public function getLevel()
     {
       return $this->level;
-    };
+    }
 
     public function IsAdminUni(){
         return $this->has('App\UniAdmin');
