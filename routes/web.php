@@ -27,3 +27,11 @@ Route::get('/user/add','User@user');
 
 Route::get('/qualification','QualificationController@index');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
