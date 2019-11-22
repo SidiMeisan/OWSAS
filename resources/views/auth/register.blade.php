@@ -11,22 +11,14 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-<<<<<<< HEAD
-=======
-
->>>>>>> Controller
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-<<<<<<< HEAD
 				                <input id="name" type="text" 
                                     class="form-control @error('name') is-invalid @enderror" 
 					                name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                <input type="hidden" name="level" id="level" valua="Admin">
-=======
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
->>>>>>> Controller
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -36,21 +28,14 @@
                             </div>
                         </div>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Controller
                         <div class="form-group row">
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('User Name') }}</label>
 
                             <div class="col-md-6">
-<<<<<<< HEAD
 				                <input id="username" type="text" 
                                     class="form-control @error('username') is-invalid @enderror" 
 					                name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-=======
                                 <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
->>>>>>> Controller
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">

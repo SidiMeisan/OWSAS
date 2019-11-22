@@ -2,20 +2,13 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Programme;
 use App\UniAdmin;
->>>>>>> Controller
-use Illuminate\Http\Request;
 
 class ProgrammeController extends Controller
 {
-<<<<<<< HEAD
-    //
-=======
     // See all programm that Uni have
     public UniProgramme($id){
     	//select all program from thathave uni id
@@ -61,5 +54,4 @@ class ProgrammeController extends Controller
 			return view('/welcome');
 		}
 	}
->>>>>>> Controller
 }

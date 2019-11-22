@@ -2,21 +2,14 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\University;
 use App\User;
->>>>>>> Controller
-use Illuminate\Http\Request;
 
 class UniversityController extends Controller
 {
-<<<<<<< HEAD
-    //
-=======
 	//All University on the list
 	public AdminUniversity(){
         
@@ -73,6 +66,4 @@ class UniversityController extends Controller
 		//check Programme and delete 
 		//check if there are application to the programme and delete it
 	}
-
->>>>>>> Controller
 }

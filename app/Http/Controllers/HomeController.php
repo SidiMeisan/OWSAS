@@ -23,8 +23,6 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-<<<<<<< HEAD
-
     public function index()
     {
         $getLevel = Auth::user()->getLevel();
@@ -33,18 +31,6 @@ class HomeController extends Controller
         }elseif ($getLevel == "AdminUni") {
             return view('university/home');
         }else{
-            return view('applicant/home');
-=======
-    public function index()
-    {
-        $userLevel = Auth::User()->getLevel();
-        if($userLevel=='Admin'){
-            return view('Admin/home');
-        }elseif($userLevel=='AdminUni'){
-            return view('Univ/home');
-        }else{
-            return view('Applicant/home');
->>>>>>> Controller
-        }
+            return view('applicant/home');\
     }
 }
