@@ -18,7 +18,7 @@
 				                <input id="name" type="text" 
                                     class="form-control @error('name') is-invalid @enderror" 
 					                name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                <input type="hidden" name="level" id="level" valua="Admin">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -28,7 +28,6 @@
                             </div>
                         </div>
 
-
                         <div class="form-group row">
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('User Name') }}</label>
 
@@ -36,6 +35,7 @@
 				                <input id="username" type="text" 
                                     class="form-control @error('username') is-invalid @enderror" 
 					                name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
