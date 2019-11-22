@@ -33,3 +33,20 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+
+//stub design
+//admin
+Route::get('admin/home', unction () {
+    return view('admin/home');
+});
+
+//admin univ
+
+Route::get('university/home', unction () {
+    return view('university/home');
+});
+//applicant
+
+Route::get('applicant/home', unction () {
+    return view('applicant/home');
+});
