@@ -6,10 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class QualificationObtained extends Model
 {
-<<<<<<< HEAD
-    //
-=======
-	//
 	protected $table = 'qualificationobtained';
 
 	protected $fillable = ['overallscore', 'applicant_id', 'result_id', 'qualification_id'];
@@ -23,5 +19,4 @@ class QualificationObtained extends Model
 	public function result(){
 		return $this->belongsTo('App\Result');
 	}
->>>>>>> Controller
 }

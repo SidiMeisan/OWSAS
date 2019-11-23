@@ -6,10 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Programme extends Model
 {
-<<<<<<< HEAD
-    //
-=======
-	//
 	protected $table = 'programme';
 
 	protected $fillable = ['university_id', 'programmename', 'description', 'closingdate'];
@@ -17,5 +13,4 @@ class Programme extends Model
 	public function Uni(){
 		return $this->belongsTo('App\University');
 	}
->>>>>>> Controller
 }

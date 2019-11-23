@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class UniAdmin extends Model
 {
-<<<<<<< HEAD
-    //
-=======
 	//
 	protected $table = 'uniadmin';
 
@@ -20,5 +17,4 @@ class UniAdmin extends Model
 	public function users(){
 		return $this->belongsTo('App\User');
 	}
->>>>>>> Controller
 }

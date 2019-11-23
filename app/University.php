@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class University extends Model
 {
-<<<<<<< HEAD
-    //
-=======
 	//
 	protected $table = 'university';
 
@@ -17,5 +14,4 @@ class University extends Model
 	public function UniversityAdmin(){
 		return $this->hasMany('App\UniAdmin');
 	}
->>>>>>> Controller
 }
