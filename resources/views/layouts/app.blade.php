@@ -40,7 +40,8 @@
                     <!-- Right Side Of Navbar -->
 
                     <ul class="navbar-nav ml-auto">
-
+                        
+                        @yield('rightNav')
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -70,7 +71,6 @@
                                 </div>
                             </li>
                         @endguest
-                        @yield('rightNav')
                     </ul>
                 </div>
             </div>

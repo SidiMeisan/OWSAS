@@ -25,7 +25,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Programme</div>
+                <div class="card-header">Qualification</div>
 
                 <div class="card-body">
                     <!--@if (session('status'))
@@ -40,8 +40,8 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Admin</th>
-                                <th scope="col">#</th>
+                                <th scope="col">Overall result</th>
+                                <th scope="col">Grading system</th>
                             </tr>
                         </thead>
                         <tbody>

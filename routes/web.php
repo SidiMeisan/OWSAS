@@ -35,18 +35,42 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 //stub design
+
 //admin
-Route::get('admin/home', unction () {
+Route::get('admin/home', function () {
     return view('admin/home');
 });
+// admin --> University
+// add university
+Route::get('admin/university/register', function () {
+    return view('admin/university/form');
+});
+// add university admin
+Route::get('admin/university/register', function () {
+    return view('admin/university/Adminform');
+});
+// admin --> qualification
+// list of qualification
+Route::get('admin/qualification', function () {
+    return view('admin/qualification/qualification');
+});
+// create new qualification
+Route::get('admin/qualification/add', function () {
+    return view('admin/qualification/qualificationForm');
+});
+
+// list of qualification
+Route::get('admin/qualification', function () {
+    return view('admin/qualification/qualification');
+});
+
 
 //admin univ
-
-Route::get('university/home', unction () {
+Route::get('university/home', function () {
     return view('university/home');
 });
-//applicant
 
-Route::get('applicant/home', unction () {
+//applicant
+Route::get('applicant/home', function () {
     return view('applicant/home');
 });
