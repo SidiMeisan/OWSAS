@@ -27,10 +27,10 @@ class HomeController extends Controller
     {
         $getLevel = Auth::user()->getLevel();
         if ($getLevel == "Admin") {
-            return view('admin/home');
+            return redirect('admin/home');
         }elseif ($getLevel == "AdminUni") {
-            return view('university/home');
+            return redirect('university/home');
         }else{
-            return view('applicant/home');\
+            return redirect('applicant/home');
     }
 }
