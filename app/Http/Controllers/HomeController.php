@@ -25,12 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $getLevel = Auth::user()->getLevel();
-        if ($getLevel == "Admin") {
-            return view('admin/home');
-        }elseif ($getLevel == "AdminUni") {
-            return view('university/home');
+        $level= Auth::user()->getLevel();
+        if ($level=="AdminSys"){
+            return redirect('/admin/home');
+        }elseif ($level=="AdminUni") {
+            return redirect('/university/home');
+        }elseif ($level=="Applicant") {
+            return redirect('/applicant/home');
         }else{
-            return view('applicant/home');\
+            return view('/welcome');
+        }
     }
 }

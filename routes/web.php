@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 /*
 	This is admin OWSAS 
@@ -34,43 +32,48 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
+
 //stub design
 
-//admin
-Route::get('admin/home', function () {
-    return view('admin/home');
-});
+// admin
 // admin --> University
+
+// list  of university
+Route::get('/admin/home', 'UniversityController@AdminUniversity');
 // add university
-Route::get('admin/university/register', function () {
-    return view('admin/university/form');
-});
+// university form
+Route::get('admin/university/form', 'UniversityController@AdminUniversityForm');
+
+// store university
+Route::post('/university/store', 'UniversityController@AdminAddUni');
+
+// store Admin university 
+Route::post('/uniAdmin/store', 'UniversityController@AdminAddAdmin');
+
 // add university admin
-Route::get('admin/university/register', function () {
-    return view('admin/university/Adminform');
-});
-// admin --> qualification
-// list of qualification
-Route::get('admin/qualification', function () {
-    return view('admin/qualification/qualification');
-});
-// create new qualification
-Route::get('admin/qualification/add', function () {
-    return view('admin/qualification/qualificationForm');
+Route::get('admin/university/adminform', function () {
+    return view('AdminSys/university/adminform');
 });
 
+
+// admin --> qualification
 // list of qualification
-Route::get('admin/qualification', function () {
-    return view('admin/qualification/qualification');
+Route::get('admin/qualification', 'QualificationController@AdminQualification');
+
+// create new qualification
+Route::get('admin/qualification/form', function () {
+    return view('AdminSys/qualification/qualificationForm');
 });
+Route::post('/QuaAdmin/store','QualificationController@QualificationStore');
 
 
 //admin univ
-Route::get('university/home', function () {
-    return view('university/home');
-});
+Route::get('university/home', 'ProgrammeController@UniProgramme');
 
 //applicant
 Route::get('applicant/home', function () {
-    return view('applicant/home');
+    return view('ApplicantSys/home');
 });
+
+
+Route::get('/logout', 'Auth\LoginController@logout');

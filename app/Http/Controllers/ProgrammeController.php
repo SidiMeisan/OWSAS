@@ -10,26 +10,30 @@ use App\UniAdmin;
 class ProgrammeController extends Controller
 {
     // See all programm that Uni have
-    public UniProgramme($id){
+    public function UniProgramme(){
     	//select all program from thathave uni id
-		$AllProg = Programme::where('university_id', $id)
+    	$userid = Auth::user()->id;
+    	$id = UniAdmin::where('users_id', $userid)
+								->first();
+		$iduni = $id->university_id;
+		$AllProg = Programme::where('university_id', $id->university_id)
 								->get();
 		// return all data
-		return view('/Uni/Prog',['Prog'=> $AllProg]);
+		return view('/UniversitySys/home',['Prog'=> $AllProg]);
 	}
 
 	// Usertype AdminUni
 	//Form to create new programme
-	public UniAddProgrammeForm($id){
+	public function UniAddProgrammeForm($id){
 		$level= Auth::user()->getLevel();
 		if ($level=="AdminUni"){
-			return view('/Admin/Prog',['UniId'=> $id]);
+			return view('/university/Prog',['UniId'=> $id]);
 		}else{
 			return view('/welcome');
 		}
 	}
 	// store the programme
-	public UniAddProg($id, Request $request){
+	public function UniAddProg($id, Request $request){
 		$level= Auth::user()->getLevel();
 		if ($level=="AdminUni"){
 			$this->validate($request,[

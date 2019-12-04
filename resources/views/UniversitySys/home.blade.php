@@ -2,9 +2,10 @@
 
 @section('rightNav')
 <li class="nav-item dropdown">
-    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-        Universty <span class="caret"></span>
+    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ url('university/home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        {{Auth::user()->name}} <span class="caret"></span>
     </a>
+
 
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -40,17 +41,21 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Admin</th>
+                                <th scope="col">description</th>
+                                <th scope="col">Date</th>
                                 <th scope="col">#</th>
                             </tr>
                         </thead>
                         <tbody>
+
+                            @foreach($Prog as $p)
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <th scope="row">{{$p->id}}</th>
+                                <td>{{$p->programmename}}</td>
+                                <td>{{$p->description}}</td>
+                                <td>{{$p->closingdate}}</td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

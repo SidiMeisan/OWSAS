@@ -14,4 +14,8 @@ class University extends Model
 	public function UniversityAdmin(){
 		return $this->hasMany('App\UniAdmin');
 	}
+
+	public function UniversityProgramme(){
+		return $this->hasMany('App\Programme');
+	}
 }

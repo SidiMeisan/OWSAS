@@ -4,52 +4,79 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\University;
+use App\UniAdmin;
 use App\User;
 
 class UniversityController extends Controller
 {
 	//All University on the list
-	public AdminUniversity(){
-        
+	public function AdminUniversity(){
+        //all University
 		$AllUni = University::all();
+
+        //user  level
 		$level= Auth::user()->getLevel();
+
+        //if he is An Admin for AdminSys
 		if ($level=="AdminSys"){
-			return view('/Admin/uni',['uni'=> $AllUni]);
+            //create the view with data array
+			return view('/AdminSys/home', ['uni'=>$AllUni]);
 		}else{
-			return view('/welcome');
+			return redirect('/');
 		}
-		
 	}
 
     //Form for creating university
-    public AdminUniversityForm(){
-    	return view('/Admin/form');
+    public function AdminUniversityForm(){
+    	return view('/AdminSys/university/form');
     }
 
     //Add new University
-    public AdminAddUni(Request $request){
-    	$this->validate($request,[
-    	 	'nama' => 'required'
-    	]);
-
+    public function AdminAddUni(Request $request){
+        //Create new university class
     	$uni = new University;
-
         $uni->UniName = $request->name;
+        // save to database
         $uni->save();
+        /// redirect to university Admin 
+        return view('/AdminSys/university/adminForm',['Notice'=> 'uniAdd', 'UniId' => $uni->id]);
+    }
 
-        return view('/Admin/uni',['Notice'=> 'uniAdd']);
+    //Add new Admin for university
+    public function AdminAddAdmin(Request $request){
+
+        //create new class for new user 
+        $newUser = new User;
+        $newUser->username = $request->username;
+        $newUser->name = $request->name;
+        $newUser->email = $request->email;
+        $newUser->level = "AdminUni";
+        $newUser->password = Hash::make($request['password']);
+        //save to database
+        $newUser->save();
+
+        //create new class for new Uniadmin 
+        $newUniAdmin = new UniAdmin;
+        $newUniAdmin->users_id = $newUser->id;
+        $newUniAdmin->university_id =$request->uniId;
+        //save to database
+        $newUniAdmin->save();
+
+        //redirect to home
+        return redirect('/admin/home');
     }
 
     //Edit University form
-    public AdminEditUniForm($id){
+    public function AdminEditUniForm($id){
    		$Uni = University::find($id);
-   		return view('/Admin/form',['Notice'=>'uniEdd', 'Uni'=>$Uni]);
+   		return view('/admin/form',['Notice'=>'uniEdd', 'Uni'=>$Uni]);
     }
 
     //Update the University
-    public AdminUpdateUni($id, Request $request){
+    public function AdminUpdateUni($id, Request $request){
 	    $this->validate($request,[
     	 	'nama' => 'required'
     	]);
@@ -61,9 +88,11 @@ class UniversityController extends Controller
 	}
 
 	//Delete the University
-	public AdminDeleteUni($id){
+	public function AdminDeleteUni($id){
 		//check UniAdmin and delete the UniAdmin
 		//check Programme and delete 
 		//check if there are application to the programme and delete it
 	}
+
+
 }

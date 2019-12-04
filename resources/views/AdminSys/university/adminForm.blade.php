@@ -1,16 +1,61 @@
 @extends('layouts.app')
 
+@section('rightNav')
+<li class="nav-item dropdown">
+    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ url('university/home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        University<span class="caret"></span>
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a class="nav-link" href="{{ url('admin/home') }}">
+            {{ __('University') }}
+        </a>
+        <a class="nav-link" href="{{ url('admin/university/form') }}">
+            {{ __('Add University') }}
+        </a>
+    </div>
+</li>
+
+
+<li class="nav-item dropdown">
+    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ url('university/home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        Quallification<span class="caret"></span>
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a class="nav-link" href="{{ url('admin/qualification') }}">
+            {{ __('Quallification') }}
+        </a>
+        <a class="nav-link" href="{{ url('admin/qualification/form') }}">
+            {{ __('Add Quallification') }}
+        </a>
+    </div>
+</li>
+
+<li class="nav-item dropdown">
+    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ url('university/home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        {{Auth::user()->name}}<span class="caret"></span>
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{{ url('logout') }}">
+            {{ __('Logout') }}
+        </a>
+    </div>
+</li>
+@endsection
+
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('New Admin for University name') }}</div>
+                <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="#">
+                    <form method="POST" action="/uniAdmin/store">
                         @csrf
-
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -18,6 +63,7 @@
                                 <input id="name" type="text" 
                                     class="form-control @error('name') is-invalid @enderror" 
                                     name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="uniId" name="uniId" value="{{$UniId}}" type="hidden">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -68,14 +114,6 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
