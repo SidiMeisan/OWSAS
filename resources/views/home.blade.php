@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    Welcome to Open Web Student Application System
+                    You are logged in!
                 </div>
             </div>
         </div>
