@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -25,7 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $level= Auth::user()->getLevel();
+        if(Auth::check()){
+            $level = Auth::user()->getLevel();
+        }else{
+            $level = "none";
+        }
+
         if ($level=="AdminSys"){
             return redirect('/admin/home');
         }elseif ($level=="AdminUni") {
@@ -35,4 +40,5 @@ class HomeController extends Controller
         }else{
             return view('/welcome');
         }
+    }
 }

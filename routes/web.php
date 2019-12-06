@@ -17,7 +17,7 @@ Route::get('/', 'HomeController@index')->name('home');
 	This is admin OWSAS 
 */
 
-// User-
+
 //Route::get('/user','User@user');
 //Route::get('/user/add','User@user');
 
