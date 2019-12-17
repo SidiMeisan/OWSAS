@@ -60,19 +60,19 @@ class ApplicationController extends Controller
         }
     }
     
-    // public function ApplicantStore(Request $request)
-    // {
-    //     $ID= Auth::user()->getID();
+    public function ApplicantStore(Request $request)
+    {
+        $ID= Auth::user()->getID();
 
-    //     $newApp = new Applicant;
-    //     $newApp->users_id = $ID
-    //     $newApp->IDtype = $request->IDtype;
-    //     $newApp->IDnumber = $request->IDnumber;
-    //     $newApp->moblieNo = $request->moblieNo;
-    //     $newAPP->dateOfBirth = $request->dateOfBirth; 
-    //     $newApp->save();
+        $newA = new Applicant;
+        $newA->users_id = $ID;
+        $newA->IDtype = $request->IDType;
+        $newA->IDnumber = $request->IDNumber;
+        $newA->moblieNo = $request->MNumber;
+        $newA->dateOfBirth = $request->DOB; 
+        $newA->save();
 
-    // }
+    }
 
     //edit info
     //and then he can edit the data that he have

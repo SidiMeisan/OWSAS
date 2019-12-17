@@ -70,14 +70,9 @@ Route::post('programme/Estore', 'ProgrammeController@UniEditProg');
 
 //applicant
 Route::get('applicant/home', 'ApplicationController@Home');
+Route::post('applicant/store', 'ApplicationController@ApplicantStore');
 
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
 //fake
-
-Route::get('/home',function ()
-{
-	# code...
-	return view('fake/');
-});
