@@ -71,6 +71,8 @@ class ApplicationController extends Controller
         $newA->moblieNo = $request->MNumber;
         $newA->dateOfBirth = $request->DOB; 
         $newA->save();
+        
+        return redirect('/');
 
     }
 
