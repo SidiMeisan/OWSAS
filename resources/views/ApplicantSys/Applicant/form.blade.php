@@ -1,5 +1,51 @@
 @extends('layouts.app')
 
+@section('rightNav')
+<li class="nav-item dropdown">
+    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ url('/') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        Application<span class="caret"></span>
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a class="nav-link" href="{{ url('/') }}">
+            {{ __('Application') }}
+        </a>
+        <a class="nav-link" href="{{ url('applcant/programme') }}">
+            {{ __('Applay') }}
+        </a>
+    </div>
+</li>
+
+
+<li class="nav-item dropdown">
+    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ url('university/home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        Quallification<span class="caret"></span>
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a class="nav-link" href="{{ url('applcant/qualification') }}">
+            {{ __('Quallification') }}
+        </a>
+        <a class="nav-link" href="{{ url('applcant/qualification/obtain') }}">
+            {{ __('Qualification Obtain') }}
+        </a>
+    </div>
+</li>
+
+<li class="nav-item dropdown">
+    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ url('university/home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        {{Auth::user()->name}}<span class="caret"></span>
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{{ url('logout') }}">
+            {{ __('Logout') }}
+        </a>
+    </div>
+</li>
+@endsection
+
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -8,18 +54,15 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="/uniAdmin/store">
                         @csrf
-
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-				                <input id="name" type="text" 
+                                <input id="name" type="text" 
                                     class="form-control @error('name') is-invalid @enderror" 
-					                name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                <input id="level" type="hidden" value="Applicant" 
-                                    name="level">
+                                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -33,9 +76,9 @@
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('User Name') }}</label>
 
                             <div class="col-md-6">
-				                <input id="username" type="text" 
+                                <input id="username" type="text" 
                                     class="form-control @error('username') is-invalid @enderror" 
-					                name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                    name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">
@@ -95,3 +138,6 @@
     </div>
 </div>
 @endsection
+
+
+<a href="/home"></a>

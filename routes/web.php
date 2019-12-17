@@ -69,9 +69,15 @@ Route::get('programme/edit/{id}', 'ProgrammeController@UniAddProgrammeEditForm')
 Route::post('programme/Estore', 'ProgrammeController@UniEditProg');
 
 //applicant
-Route::get('applicant/home', function () {
-    return view('ApplicantSys/home');
-});
+Route::get('applicant/home', 'ApplicationController@Home');
 
 
 Route::get('/logout', 'Auth\LoginController@logout');
+
+//fake
+
+Route::get('/home',function ()
+{
+	# code...
+	return view('fake/');
+});
