@@ -31,7 +31,16 @@ class UniversityController extends Controller
 
     //Form for creating university
     public function AdminUniversityForm(){
-    	return view('/AdminSys/university/form');
+        //user  level
+        $level= Auth::user()->getLevel();
+
+        //if he is An Admin for AdminSys
+        if ($level=="AdminSys"){
+            //create the view with data array
+            return view('/AdminSys/university/form');
+        }else{
+            return redirect('/');
+        }
     }
 
     //Add new University
@@ -48,6 +57,8 @@ class UniversityController extends Controller
     //Add new Admin for university
     public function AdminAddAdmin(Request $request){
 
+
+        
         //create new class for new user 
         $newUser = new User;
         $newUser->username = $request->username;
@@ -71,15 +82,22 @@ class UniversityController extends Controller
 
     //Edit University form
     public function AdminEditUniForm($id){
-   		$Uni = University::find($id);
-   		return view('/admin/form',['Notice'=>'uniEdd', 'Uni'=>$Uni]);
+        //user  level
+        $level= Auth::user()->getLevel();
+
+        //if he is An Admin for AdminSys
+        if ($level=="AdminSys"){
+            //create the view with data array
+            $Uni = University::find($id);
+            return view('/admin/form',['Notice'=>'uniEdd', 'Uni'=>$Uni]);
+        }else{
+            return redirect('/');
+        }
     }
 
     //Update the University
     public function AdminUpdateUni($id, Request $request){
-	    $this->validate($request,[
-    	 	'nama' => 'required'
-    	]);
+        
 
     	$Uni = University::find($id);
     	$Uni->UniName =  $request->nama;
@@ -94,5 +112,8 @@ class UniversityController extends Controller
 		//check if there are application to the programme and delete it
 	}
 
-
+    //applicant
+    //see all university
+    //search university
+    //university with id
 }

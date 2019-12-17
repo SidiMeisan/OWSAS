@@ -41,4 +41,8 @@ class HomeController extends Controller
             return view('/welcome');
         }
     }
+
+    //guest
+    //see university
+    //programme avaliable    
 }

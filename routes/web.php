@@ -28,27 +28,24 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-//stub design
 
 // admin
+
 // admin --> University
 
 // list  of university
 Route::get('/admin/home', 'UniversityController@AdminUniversity');
+
 // add university
 // university form
 Route::get('admin/university/form', 'UniversityController@AdminUniversityForm');
-
 // store university
 Route::post('/university/store', 'UniversityController@AdminAddUni');
 
 // store Admin university 
 Route::post('/uniAdmin/store', 'UniversityController@AdminAddAdmin');
 
-// add university admin
-Route::get('admin/university/adminform', function () {
-    return view('AdminSys/university/adminform');
-});
+
 
 
 // admin --> qualification
@@ -56,14 +53,20 @@ Route::get('admin/university/adminform', function () {
 Route::get('admin/qualification', 'QualificationController@AdminQualification');
 
 // create new qualification
-Route::get('admin/qualification/form', function () {
-    return view('AdminSys/qualification/qualificationForm');
-});
+Route::get('admin/qualification/form','QualificationController@QualificationForm');
+
 Route::post('/QuaAdmin/store','QualificationController@QualificationStore');
 
 
-//admin univ
+//admin university
 Route::get('university/home', 'ProgrammeController@UniProgramme');
+//programme form
+Route::get('programme/form', 'ProgrammeController@UniAddProgrammeForm');
+//store programme 
+Route::post('programme/store', 'ProgrammeController@UniAddProg');
+//edit form
+Route::get('programme/edit/{id}', 'ProgrammeController@UniAddProgrammeEditForm');
+Route::post('programme/Estore', 'ProgrammeController@UniEditProg');
 
 //applicant
 Route::get('applicant/home', function () {

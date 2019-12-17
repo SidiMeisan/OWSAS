@@ -43,6 +43,11 @@ class User extends Authenticatable
       return $this->level;
     }
 
+    public function getID()
+    {
+      return $this->id;
+    }
+
     public function IsAdminUni(){
         return $this->has('App\UniAdmin');
     }

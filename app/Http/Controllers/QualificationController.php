@@ -11,7 +11,6 @@ use App\User;
 
 class QualificationController extends Controller
 {
-    //
 
     // Qualification list
     Public function AdminQualification(){
@@ -41,7 +40,7 @@ class QualificationController extends Controller
         //if he is An Admin for AdminSys
 		if ($level=="AdminSys"){
             //create the view with data array
-			return view('/AdminSys/qualificationForm');
+			return view('/AdminSys/qualification/qualificationForm');
 		}else{
             // if not. redirect to welcome page 
 			return view('/welcome');
@@ -68,6 +67,17 @@ class QualificationController extends Controller
         return redirect('admin/qualification');
     }
 
+
+    //edit qualification
+    //suggest qualification
+    //store suggest
     
 
+    //applicant
+    //obtain
+    //subject
+
+    //admin uni
+    //applicant obtain
+    
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use APP\User;
 use App\Programme;
 use App\UniAdmin;
 
@@ -22,40 +23,78 @@ class ProgrammeController extends Controller
 		return view('/UniversitySys/home',['Prog'=> $AllProg]);
 	}
 
-	// Usertype AdminUni
+	//Usertype AdminUni
 	//Form to create new programme
-	public function UniAddProgrammeForm($id){
+	public function UniAddProgrammeForm(){
 		$level= Auth::user()->getLevel();
+		$userid= Auth::user()->getID();
+
+		$UniAdmin = UniAdmin::where("users_id","=", $userid)->first();
+
 		if ($level=="AdminUni"){
-			return view('/university/Prog',['UniId'=> $id]);
+			return view('/universitySys/programme/form',['UniId'=> $UniAdmin]);
 		}else{
 			return view('/welcome');
 		}
 	}
 	// store the programme
-	public function UniAddProg($id, Request $request){
+	public function UniAddProg(Request $request){
 		$level= Auth::user()->getLevel();
 		if ($level=="AdminUni"){
-			$this->validate($request,[
-    	 		'name' => 'required',
-    	 		'description' => 'required',
-    	 		'closingdate' => 'required'
-    		]);
 
     		$Prog = new Programme;
 
 	        $Prog->programmename = $request->name;
-	        $Prog->description = $request->description;
+	        $Prog->description = $request->desc;
 	        $Prog->closingdate = $request->date;
+	        $Prog->university_id = $request->uniId;
 	        $Prog->save();
 
-	        if (!isset($request->repeat)){
-	        	return view('/Admin/AddProg/{$id}',['Notice'=> 'uniAdd']);
-	        }else{
-				return view('/Admin/Prog',['Notice'=> 'uniAdd']);
-	        }
+	        return redirect('university/home');
+
 		}else{
 			return view('/welcome');
 		}
 	}
+
+	//edit programme
+	public function UniAddProgrammeEditForm($id)
+	{
+		# code...
+		$level= Auth::user()->getLevel();
+		if ($level=="AdminUni"){
+			$Prog = Programme::where("id","=", $id)->first();
+
+	        return view('/universitySys/programme/editform',['edit'=> $Prog]);
+		}else{
+			return view('/welcome');
+		}
+	}
+	//store edit
+	public function UniEditProg(Request $request){
+
+		$level= Auth::user()->getLevel();
+		if ($level=="AdminUni"){
+
+			$Prog = Programme::where("id","=", $request->IDEdit)->first();
+	        $Prog->programmename = $request->name;
+	        $Prog->description = $request->desc;
+	        $Prog->closingdate = $request->date;
+	        $Prog->save();
+
+	        return redirect('/');
+
+		}else{
+			return view('/welcome');
+		}
+	}
+	//application
+	//acccept reject
+
+
+
+	//applicant
+	//applay to programme
+	//see all programme on university
+	//search programme
 }
