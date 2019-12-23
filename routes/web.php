@@ -74,7 +74,13 @@ Route::post('programme/Estore', 'ProgrammeController@UniEditProg');
 
 //applicant
 Route::get('applicant/home', 'ApplicationController@Home');
+//application
 Route::post('applicant/store', 'ApplicationController@ApplicantStore');
+
+//applicant->result
+Route::get('applicant/result', 'ApplicationController@GetResult');
+Route::get('applicant/result/form', 'ApplicationController@ResultForm');
+Route::post('applicant/result', 'ApplicationController@ResultProg');
 
 
 Route::get('/logout', 'Auth\LoginController@logout');
