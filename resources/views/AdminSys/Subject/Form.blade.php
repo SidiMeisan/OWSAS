@@ -98,8 +98,8 @@
                                     class="form-control" name="typeScore">
                                     <option value="Num5">Pont from 1 till 5</option>
                                     <option value="Num10">Pont from 1 till 10</option>
-                                    <option value="Num10">Pont A,B,C,D,E,F</option>
-                                    <option value="Num10">Pont A+,A,B+,B,C+,C,E,F</option>
+                                    <option value="ABC5">Pont A,B,C,D,E</option>
+                                    <option value="ABC10">Pont A,A-,B+,B,B-,C+,C,C-,C+,C</option>
                                     <option value="Persentation">Persentation</option>
                                 </select>
 

@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 
 use App\User;
+use App\Result;
+use App\Subject;
 use App\Applicant;
 use App\Application;
 
@@ -89,5 +91,41 @@ class ApplicationController extends Controller
     public function ReadApplication()
     {
     	//and see all information of application that he send 
+    }
+
+
+    //result
+    public function resultForm()
+    {
+        //select all qualification 
+        $All = Subject::all();
+        //user  level
+        $level= Auth::user()->getLevel();
+
+        //if he is An Admin for AdminSys
+        if ($level=="Applicant"){
+            //create the view with data array
+            return view('applicant/result/form', ['data'=>$All]);
+        }else{
+            // if not. redirect to welcome page 
+            return redirect('/');
+        }
+    }
+
+    public function ResultProg(Request $request)
+    {
+        $userid= Auth::user()->getID();
+
+        $idApplicant = Applicant::where('users_id', $userid)
+                                ->first();
+        $getID = $idApplicant->id;
+
+        $newS = new Result;
+        $newS->applicant_id = $getID;
+        $newS->subject_id = $request->Subject;
+        $newS->score = $request->score;
+        $newS->save();
+        
+        return redirect('/');
     }  
 }
