@@ -70,6 +70,7 @@ class ProgrammeController extends Controller
 			return view('/welcome');
 		}
 	}
+
 	//store edit
 	public function UniEditProg(Request $request){
 
@@ -88,7 +89,20 @@ class ProgrammeController extends Controller
 			return view('/welcome');
 		}
 	}
+
 	//application
+	public function ProgApplication($id)
+	{
+		# code...
+		
+		$level= Auth::user()->getLevel();
+		if ($level=="AdminUni"){
+	        return redirect('/universitySys/programme/application');
+
+		}else{
+			return view('/welcome');
+		}
+	}
 	//acccept reject
 
 
