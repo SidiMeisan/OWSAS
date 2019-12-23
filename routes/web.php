@@ -13,11 +13,6 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 
-/*
-	This is admin OWSAS 
-*/
-
-
 //Route::get('/user','User@user');
 //Route::get('/user/add','User@user');
 
@@ -48,15 +43,24 @@ Route::post('/uniAdmin/store', 'UniversityController@AdminAddAdmin');
 
 
 
-// admin --> qualification
+// admin -> qualification
 // list of qualification
 Route::get('admin/qualification', 'QualificationController@AdminQualification');
 
 // create new qualification
 Route::get('admin/qualification/form','QualificationController@QualificationForm');
-
 Route::post('/QuaAdmin/store','QualificationController@QualificationStore');
 
+// Edit Qualification
+Route::get('admin/qualification/edit/{$id}','QualificationController@QualificationEditForm');
+Route::post('/QuaAdmin/Edit','QualificationController@QualificationEdit');
+
+// admin -> Subject
+// list of Subject
+Route::get('admin/subject', 'QualificationController@AdminSubject');
+// create new Subject
+Route::get('admin/subject/form','QualificationController@subjectForm');
+Route::post('/SubAdmin/store','QualificationController@subjectStore');
 
 //admin university
 Route::get('university/home', 'ProgrammeController@UniProgramme');

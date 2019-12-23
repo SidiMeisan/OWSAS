@@ -69,7 +69,7 @@
                 <div class="card-header">{{ __('Add Qualification') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/QuaAdmin/store">
+                    <form method="POST" action="/QuaAdmin/Edit">
                         @csrf
 
                         <div class="form-group row">
@@ -77,8 +77,9 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" 
-                                    class="form-control @error('name') is-invalid @enderror" 
-                                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    class="form-control" 
+                                    name="name" value="{{ $data->qulificationName }}" required autocomplete="name" autofocus>
+                                <input id="IDEdit" name="IDEdit" value="{{$edit->id}}" type="hidden">
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -93,8 +94,8 @@
 
                             <div class="col-md-6">
                                 <input id="minscore" type="text" 
-                                    class="form-control @error('minscore') is-invalid @enderror" 
-                                    name="minscore" value="{{ old('minscore') }}" required autocomplete="minscore" autofocus>
+                                    class="form-control " 
+                                    name="minscore" value="{{ $data->minimumScore }}" required autocomplete="minscore" autofocus>
 
                                 @error('minscore')
                                     <span class="invalid-feedback" role="alert">
@@ -109,8 +110,8 @@
 
                             <div class="col-md-6">
                                 <input id="maxscore" type="text" 
-                                    class="form-control @error('maxscore') is-invalid @enderror" 
-                                    name="maxscore" value="{{ old('maxscore') }}" required autocomplete="maxscore" autofocus>
+                                    class="form-control" 
+                                    name="maxscore" value="{{ $data->maximumScore }}" required autocomplete="maxscore" autofocus>
 
                                 @error('maxscore')
                                     <span class="invalid-feedback" role="alert">
@@ -125,8 +126,8 @@
 
                             <div class="col-md-6">
                                 <textarea id="pscore" type="text" 
-                                    class="form-control @error('pscore') is-invalid @enderror" 
-                                    name="pscore" value="{{ old('pscore') }}" required autocomplete="pscore" autofocus>
+                                    class="form-control" 
+                                    name="pscore" value="{{ $data->gradelist }}" required autocomplete="pscore" autofocus>
                                 </textarea>
                                 @error('pscore')
                                     <span class="invalid-feedback" role="alert">
@@ -141,8 +142,8 @@
 
                             <div class="col-md-6">
                                 <textarea id="Rule" type="text" 
-                                    class="form-control @error('Rule') is-invalid @enderror" 
-                                    name="Rule" value="{{ old('Rule') }}" required autocomplete="Rule" autofocus>
+                                    class="form-control" 
+                                    name="Rule" value="{{ $data->resultCalcDescription }}" required autocomplete="Rule" autofocus>
                                 </textarea>
                                 @error('Rule')
                                     <span class="invalid-feedback" role="alert">
