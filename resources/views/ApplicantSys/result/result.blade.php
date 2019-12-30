@@ -11,7 +11,7 @@
         <a class="nav-link" href="{{ url('/') }}">
             {{ __('Application') }}
         </a>
-        <a class="nav-link" href="{{ url('/') }}">
+        <a class="nav-link" href="{{ url('applicant/programme') }}">
             {{ __('Applay') }}
         </a>
     </div>
@@ -65,32 +65,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">Qualification Obtain</div>
-
-                <div class="card-body">
-                    <!--@if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!-->
-                    <table class="table table-striped table-light">
-                        <thead>
-                            <tr>
-                                <th scope="col">Qualification</th>
-                                <th scope="col">#</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
+        
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">Result</div>
@@ -106,12 +81,24 @@
                     <table class="table table-striped table-light">
                         <thead>
                             <tr>
+                                <th scope="col">id</th>
                                 <th scope="col">Subject Name</th>
                                 <th scope="col">Score</th>
                                 <th scope="col">#</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($data as $p)
+                            <tr>
+                                <th scope="row">{{$p->id}}</th>
+                                <td>
+                                    {{$p->subjects->subjectName}}
+                                </td>
+                                <td>
+                                    {{$p->score}}
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

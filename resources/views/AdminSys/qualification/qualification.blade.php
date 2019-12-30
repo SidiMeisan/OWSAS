@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-
+@section('rightNav')
 <li class="nav-item dropdown">
     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ url('university/home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
         University<span class="caret"></span>

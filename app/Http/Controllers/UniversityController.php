@@ -12,6 +12,10 @@ use App\User;
 
 class UniversityController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 	//All University on the list
 	public function AdminUniversity(){
         //all University
@@ -45,19 +49,24 @@ class UniversityController extends Controller
 
     //Add new University
     public function AdminAddUni(Request $request){
-        //Create new university class
-    	$uni = new University;
-        $uni->UniName = $request->name;
-        // save to database
-        $uni->save();
-        /// redirect to university Admin 
-        return view('/AdminSys/university/adminForm',['Notice'=> 'uniAdd', 'UniId' => $uni->id]);
+        $Sdata = University::where('UniName', $request->name)->count();
+        
+        if ($Sdata == 0) {
+            //Create new university class
+            $uni = new University;
+            $uni->UniName = $request->name;
+            // save to database
+            $uni->save();
+             // redirect to university Admin 
+            return view('/AdminSys/university/adminForm',['Notice'=> 'uniAdd', 'UniId' => $uni->id]);
+        }else{
+            $ThisData = University::where('UniName', $request->name)->first();
+            return view('/AdminSys/university/adminForm',['Notice'=> 'uniAdd', 'UniId' => $ThisData->id]);
+        }
     }
 
     //Add new Admin for university
     public function AdminAddAdmin(Request $request){
-
-
         
         //create new class for new user 
         $newUser = new User;
@@ -98,11 +107,10 @@ class UniversityController extends Controller
     //Update the University
     public function AdminUpdateUni($id, Request $request){
         
-
     	$Uni = University::find($id);
     	$Uni->UniName =  $request->nama;
     	$uni->save();
-    	return view('/Admin/uni',['Notice'=> 'uniEdit']);
+    	return redirect('/');
 	}
 
 	//Delete the University
@@ -112,8 +120,25 @@ class UniversityController extends Controller
 		//check if there are application to the programme and delete it
 	}
 
+
     //applicant
     //see all university
+    //All University on the list
+    public function ApplicantUniversity(){
+        //all University
+        $AllUni = University::all();
+
+        //user  level
+        $level= Auth::user()->getLevel();
+
+        //if he is An Admin for AdminSys
+        if ($level=="AdminSys"){
+            //create the view with data array
+            return view('/ApplicantSys/university/home', ['datas'=>$AllUni]);
+        }else{
+            return redirect('/');
+        }
+    }
     //search university
     //university with id
 }

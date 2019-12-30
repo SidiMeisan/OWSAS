@@ -17,6 +17,8 @@ Route::get('/', 'HomeController@index')->name('home');
 //Route::get('/user/add','User@user');
 
 Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -62,6 +64,10 @@ Route::get('admin/subject', 'QualificationController@AdminSubject');
 Route::get('admin/subject/form','QualificationController@subjectForm');
 Route::post('/SubAdmin/store','QualificationController@subjectStore');
 
+
+
+
+
 //admin university
 Route::get('university/home', 'ProgrammeController@UniProgramme');
 //programme form
@@ -72,6 +78,12 @@ Route::post('programme/store', 'ProgrammeController@UniAddProg');
 Route::get('programme/edit/{id}', 'ProgrammeController@UniAddProgrammeEditForm');
 Route::post('programme/Estore', 'ProgrammeController@UniEditProg');
 
+
+
+
+
+
+
 //applicant
 Route::get('applicant/home', 'ApplicationController@Home');
 //application
@@ -79,10 +91,13 @@ Route::post('applicant/store', 'ApplicationController@ApplicantStore');
 
 //applicant->result
 Route::get('applicant/result', 'ApplicationController@GetResult');
-Route::get('applicant/result/form', 'ApplicationController@ResultForm');
-Route::post('applicant/result', 'ApplicationController@ResultProg');
+Route::get('applicant/result/Form', 'ApplicationController@ResultForm');
+Route::post('/applicant/ResultProg', 'ApplicationController@ResultProg');
 
+//University
+Route::get('applicant/university', 'UniversityController@ApplicantUniversity');
 
-Route::get('/logout', 'Auth\LoginController@logout');
+//programme
+Route::get('applicant/programme', 'ProgrammeController@ApplicantProgramme');
+Route::get('applicant/programme/applay/{id}', 'ProgrammeController@ApplicantProgrammeApplay');
 
-//fake

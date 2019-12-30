@@ -14,7 +14,7 @@ class Result extends Model
 		return $this->belongsTo('App\Applicant');
 	}
 
-	public function subjectResult(){
-		return $this->belongsTo('App\Subject');
+	public function subjects(){
+		return $this->belongsTo('App\Subject', 'subject_id');
 	}
 }

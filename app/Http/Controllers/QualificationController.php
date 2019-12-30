@@ -12,6 +12,10 @@ use App\User;
 
 class QualificationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     // Qualification list
     Public function AdminQualification(){
@@ -51,19 +55,24 @@ class QualificationController extends Controller
     //store data to model
     public function QualificationStore(Request $request){
 
-        // new class from qualification model 
-    	$newQ = new Qualification;
+        $Sdata = Qualification::where('qulificationName', $request->name)->count();
+        
+        if ($Sdata == 0) {
+            # code...   
+            // new class from qualification model 
+            $newQ = new Qualification;
 
-        //insert data to class
-        $newQ->qulificationName = $request->name;
-        $newQ->minimumScore = $request->minscore;
-        $newQ->maximumScore = $request->maxscore;
-        $newQ->gradelist = $request->pscore;
-        $newQ->resultCalcDescription = $request->Rule;
+            //insert data to class
+            $newQ->qulificationName = $request->name;
+            $newQ->minimumScore = $request->minscore;
+            $newQ->maximumScore = $request->maxscore;
+            $newQ->gradelist = $request->pscore;
+            $newQ->resultCalcDescription = $request->Rule;
 
-        //store data to model or instruct the model to create the data
-        $newQ->save();
-
+            //store data to model or instruct the model to create the data
+            $newQ->save();
+        }
+        
         //return to qualification page
         return redirect('admin/qualification');
     }
@@ -146,10 +155,15 @@ class QualificationController extends Controller
     //add new subject
     public function subjectStore(Request $request)
         {
-            $newSub =  new Subject;
-            $newSub->subjectName = $request->name;
-            $newSub->typeScore = $request->typeScore;
-            $newSub->save();
+            $Sdata = Subject::where('subjectName', $request->name)->count();
+            
+            if ($Sdata == 0) {
+                # code...   
+                $newSub =  new Subject;
+                $newSub->subjectName = $request->name;
+                $newSub->typeScore = $request->typeScore;
+                $newSub->save();
+            }
 
             return redirect('admin/subject');
         }        

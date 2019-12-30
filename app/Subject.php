@@ -10,4 +10,8 @@ class Subject extends Model
 
 	protected $fillable = ['subjectName', 'typeScore'];
 
+	public function results(){
+		return $this->hasMany('App\Result', 'subject_id', 'id');
+	}
+
 }
