@@ -13,4 +13,9 @@ class Programme extends Model
 	public function Uni(){
 		return $this->belongsTo('App\University', 'university_id');
 	}
+
+	public function Apply()
+	{
+		return $this->hasMany('App\Application', 'programme_id');
+	}
 }

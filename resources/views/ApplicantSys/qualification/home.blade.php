@@ -61,14 +61,12 @@
 </li>
 @endsection
 
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Result</div>
+                <div class="card-header">Qualification</div>
 
                 <div class="card-body">
                     <!--@if (session('status'))
@@ -81,21 +79,26 @@
                     <table class="table table-striped table-light">
                         <thead>
                             <tr>
-                                <th scope="col">id</th>
-                                <th scope="col">Subject Name</th>
-                                <th scope="col">Score</th>
                                 <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Overall result</th>
+                                <th scope="col">Grading system</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($data as $p)
                             <tr>
                                 <th scope="row">{{$p->id}}</th>
-                                <td>
-                                    {{$p->subjects->subjectName}}
+                                <td>{{$p->qulificationName}}</td>
+                                <td>{{$p->resultCalcDescription}}<br/>
+                                    Min Score {{$p->minimumScore}}<br/>
+                                    Max Score {{$p->maximumScore}}<br/>
                                 </td>
+                                <td>{{$p->gradelist}}</td>
                                 <td>
-                                    {{$p->score}}
+                                    <a href="{{url('applicant/qualification/'.$p->id)}}">
+                                        obtain
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach

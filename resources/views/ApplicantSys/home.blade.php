@@ -24,10 +24,10 @@
     </a>
 
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <a class="nav-link" href="{{ url('/') }}">
+        <a class="nav-link" href="{{ url('applicant/qualification') }}">
             {{ __('Quallification') }}
         </a>
-        <a class="nav-link" href="{{ url('/') }}">
+        <a class="nav-link" href="{{ url('applicant/qualification/obtain') }}">
             {{ __('Qualification Obtain') }}
         </a>
     </div>
@@ -65,6 +65,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">Qualification Obtain</div>

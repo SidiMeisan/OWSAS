@@ -11,7 +11,7 @@ class Result extends Model
 	protected $fillable = ['subject_id', 'applicant_id', 'score'];
 
 	public function resultApplicant(){
-		return $this->belongsTo('App\Applicant');
+		return $this->belongsTo('App\Applicant', 'applicant_id');
 	}
 
 	public function subjects(){

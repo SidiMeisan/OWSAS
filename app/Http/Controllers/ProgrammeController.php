@@ -20,14 +20,23 @@ class ProgrammeController extends Controller
     // See all programm that Uni have
     public function UniProgramme(){
     	//select all program from thathave uni id
+    	if ($level!="AdminUni"){
+    		return redirect('/');
+    	}
     	$userid = Auth::user()->id;
-    	$id = UniAdmin::where('users_id', $userid)
-								->first();
-		$iduni = $id->university_id;
+    	$id = UniAdmin::where('users_id', $userid)->first();
 		$AllProg = Programme::where('university_id', $id->university_id)
 								->get();
 		// return all data
 		return view('/UniversitySys/home',['Prog'=> $AllProg]);
+	}
+
+	// List ofapplication 
+	public function ApplicationList($id)
+	{
+		$apl = Application::where('programme_id', $id)->get();
+		// return all data
+		return view('/UniversitySys/applicant/application',['apl'=> $apl]);
 	}
 
 	//Usertype AdminUni
@@ -109,7 +118,25 @@ class ProgrammeController extends Controller
 			return view('/welcome');
 		}
 	}
+
 	//acccept reject
+	public function ApplicationAccept($id)
+	{
+		$updateThis = Application::where('id', $id)->first();
+		$updateThis->status = 'accepted';
+		$updateThis->save();
+
+		return redirect('programme/application/'.$id);
+	}
+
+	public function ApplicationReject($id)
+	{
+		$updateThis = Application::where('id', $id)->first();
+		$updateThis->status = 'Rejected';
+		$updateThis->save();
+
+		return redirect('programme/application/'.$id);
+	}
 
 
 

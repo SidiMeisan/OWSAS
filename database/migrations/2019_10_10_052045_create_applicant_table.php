@@ -17,7 +17,7 @@ class CreateApplicantTable extends Migration
 		$table->bigIncrements('id');
 		$table->integer('users_id');
 		$table->string('IDtype');
-		$table->integer('IDnumber');
+		$table->string('IDnumber');
 		$table->string('moblieNo');
 		$table->date('dateOfBirth');
             	$table->timestamps();

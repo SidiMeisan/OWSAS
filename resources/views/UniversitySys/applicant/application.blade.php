@@ -57,17 +57,24 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Date</th>
-                                <th scope="col">#</th>
+                                <th scope="col">Status</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach($Prog as $p)
+                            @foreach($apl as $p)
                             <tr>
                                 <th scope="row">{{$p->id}}</th>
-                                <td>{{$p->name}}</td>
+                                <td>{{$p->applicant->users->name}}</td>
                                 <td>{{$p->applicationdate}}</td>
                                 <td>{{$p->status}}</td>
+                                <td>
+                                    <a href="{{ url('programme/accept/'.$p->id) }}">accept
+                                    </a>
+                                    |
+                                    <a href="{{ url('programme/reject/'.$p->id) }}">Reject
+                                    </a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

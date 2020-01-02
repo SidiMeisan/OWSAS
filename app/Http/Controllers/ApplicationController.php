@@ -78,22 +78,6 @@ class ApplicationController extends Controller
 
     }
 
-    //edit info
-    //and then he can edit the data that he have
-
-    //Application
-    public function CreateApplication()
-    {
-    	# code...
-
-    }
-
-    public function ReadApplication()
-    {
-    	//and see all information of application that he send 
-    }
-
-
     //result
 
     //result obtain
@@ -154,7 +138,8 @@ class ApplicationController extends Controller
         $searchData = Result::where('applicant_id',$getID)
                         ->where('subject_id', $request->Subject)
                         ->first();
-        if ($searchData->count()==0) {
+                        
+        if (empty($searchData)) {
             # code...
             $newS = new Result;
             $newS->applicant_id = $getID;

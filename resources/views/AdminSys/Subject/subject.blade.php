@@ -89,15 +89,7 @@
                             <tr>
                                 <th scope="row">{{$p->id}}</th>
                                 <td>{{$p->subjectName}}</td>
-                                @if ($p->typeScore == 'Num5')
-                                <td>1 till 5</td>
-                                @elseif ($p->typeScore == 'Num10')
-                                <td>1 till 10</td>
-                                @elseif ($p->typeScore == 'ABC5')
-                                <td>A till E</td>
-                                @else
-                                <td>A till E with + -</td>
-                                @endif
+                                <td>100</td>
                             </tr>
                             @endforeach
                         </tbody>

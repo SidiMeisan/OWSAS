@@ -58,6 +58,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">description</th>
                                 <th scope="col">Date</th>
+                                <th scope="col">Application</th>
                                 <th scope="col">#</th>
                             </tr>
                         </thead>
@@ -65,10 +66,14 @@
 
                             @foreach($Prog as $p)
                             <tr>
-                                <th scope="row">{{$p->id}}</th>
+                                <th scope="row">{{$loop->iteration}}</th>
                                 <td>{{$p->programmename}}</td>
                                 <td>{{$p->description}}</td>
                                 <td>{{$p->closingdate}}</td>
+                                <td>
+                                    <a href="{{ url('programme/application/'.$p->id) }}">{{$p->Apply->count()}}
+                                    </a>
+                                </td>
                                 <td><span class="glyphicon glyphicon-cog">
                                     <a href="{{ url('programme/edit/'.$p->id) }}">Edit</a> 
                                     </span>
