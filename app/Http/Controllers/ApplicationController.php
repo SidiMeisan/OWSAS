@@ -95,17 +95,48 @@ class ApplicationController extends Controller
 
 
     //result
-    public function resultForm()
+
+    //result obtain
+    public function GetResult()
     {
-        //select all qualification 
-        $All = Subject::all();
         //user  level
         $level= Auth::user()->getLevel();
 
+        //get user id
+        $userid= Auth::user()->getID();
+
+        //applicant id
+        $idApplicant = Applicant::where('users_id', $userid)
+                                ->first();
         //if he is An Admin for AdminSys
         if ($level=="Applicant"){
             //create the view with data array
-            return view('applicant/result/form', ['data'=>$All]);
+            $All = Result::where('applicant_id', $idApplicant->id)->get();
+            return view('ApplicantSys/result/result', ['data'=>$All]);
+        }else{
+            // if not. redirect to welcome page 
+            return redirect('/');
+        }
+    }
+    //form
+    public function resultForm()
+    {
+        //user  level
+        $level= Auth::user()->getLevel();
+
+        //get user id
+        $userid= Auth::user()->getID();
+
+        //applicant id
+        $idApplicant = Applicant::where('users_id', $userid)
+                                ->first();
+        //select all Subject 
+        $All = Subject::all();
+
+        //if he is An Applicant for ApplicantSys
+        if ($level=="Applicant"){
+            //create the view with data array
+            return view('ApplicantSys/result/form', ['data'=>$All]);
         }else{
             // if not. redirect to welcome page 
             return redirect('/');
@@ -120,12 +151,22 @@ class ApplicationController extends Controller
                                 ->first();
         $getID = $idApplicant->id;
 
-        $newS = new Result;
-        $newS->applicant_id = $getID;
-        $newS->subject_id = $request->Subject;
-        $newS->score = $request->score;
-        $newS->save();
-        
+        $searchData = Result::where('applicant_id',$getID)
+                        ->where('subject_id', $request->Subject)
+                        ->first();
+        if ($searchData->count()==0) {
+            # code...
+            $newS = new Result;
+            $newS->applicant_id = $getID;
+            $newS->subject_id = $request->Subject;
+            $newS->score = $request->score;
+            $newS->save();
+        } else {
+            # code...
+            $newS = $searchData;
+            $newS->score = $request->score;
+            $newS->save();
+        }
         return redirect('/');
     }  
 }

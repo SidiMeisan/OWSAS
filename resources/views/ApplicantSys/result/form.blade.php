@@ -11,7 +11,7 @@
         <a class="nav-link" href="{{ url('/') }}">
             {{ __('Application') }}
         </a>
-        <a class="nav-link" href="{{ url('/') }}">
+        <a class="nav-link" href="{{ url('applicant/programme') }}">
             {{ __('Applay') }}
         </a>
     </div>
@@ -71,7 +71,7 @@
                 <div class="card-header">{{ __('Regis Subject') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/SubAdmin/store">
+                    <form method="POST" action="/applicant/ResultProg">
                         @csrf
                         <div class="form-group row">
                             <label for="Subject" class="col-md-4 col-form-label text-md-right">{{ __('Subject') }}</label>
@@ -112,7 +112,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('New Subject') }}
+                                    {{ __('Submit') }}
                                 </button>
                             </div>
                         </div>

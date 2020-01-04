@@ -15,6 +15,7 @@ class CreateResultTable extends Migration
     {
         Schema::create('result', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('applicant_id');
             $table->integer('subject_id');
             $table->float('score');
             $table->timestamps();

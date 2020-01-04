@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 use APP\User;
 use App\Programme;
 use App\UniAdmin;
+use App\Application;
+use App\Applicant;
 
 class ProgrammeController extends Controller
 {
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     // See all programm that Uni have
     public function UniProgramme(){
     	//select all program from thathave uni id
@@ -98,7 +105,6 @@ class ProgrammeController extends Controller
 		$level= Auth::user()->getLevel();
 		if ($level=="AdminUni"){
 	        return redirect('/universitySys/programme/application');
-
 		}else{
 			return view('/welcome');
 		}
@@ -109,6 +115,36 @@ class ProgrammeController extends Controller
 
 	//applicant
 	//applay to programme
+	public function ApplicantProgrammeApplay($id)
+	{
+		$level= Auth::user()->getLevel();
+		$UserID= Auth::user()->getID();
+		$ldate = date('Y-m-d H:i:s');
+		$ApplicantID = Application::where('users_id', $UserID);
+		
+		if ($level=="Applicant"){
+			$newA = new Application;
+			$newA->applicant_id = $ApplicantID;
+			$newA->programme_id = $id;
+			$newA->applicationdate = $ldate;
+			$newA->status = "new";
+			$newA->save();
+		}else{
+			return view('/welcome');
+		}
+	}
+
 	//see all programme on university
+	public function ApplicantProgramme()
+	{
+		$level= Auth::user()->getLevel();
+
+		if($level == "Applicant"){
+			$data = Programme::all();
+	        return view('/ApplicantSys/programme/home',['datas'=> $data]);
+		}else{
+			return view('/welcome');
+		}
+	}
 	//search programme
 }
