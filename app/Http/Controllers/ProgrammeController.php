@@ -19,15 +19,25 @@ class ProgrammeController extends Controller
 
     // See all programm that Uni have
     public function UniProgramme(){
+		$level= Auth::user()->getLevel();
+    	if ($level!="AdminUni"){
+    		return redirect('/');
+    	}
     	//select all program from thathave uni id
     	$userid = Auth::user()->id;
-    	$id = UniAdmin::where('users_id', $userid)
-								->first();
-		$iduni = $id->university_id;
+    	$id = UniAdmin::where('users_id', $userid)->first();
 		$AllProg = Programme::where('university_id', $id->university_id)
 								->get();
 		// return all data
 		return view('/UniversitySys/home',['Prog'=> $AllProg]);
+	}
+
+	// List ofapplication 
+	public function ApplicationList($id)
+	{
+		$apl = Application::where('programme_id', $id)->get();
+		// return all data
+		return view('/UniversitySys/applicant/application',['apl'=> $apl]);
 	}
 
 	//Usertype AdminUni
@@ -109,7 +119,25 @@ class ProgrammeController extends Controller
 			return view('/welcome');
 		}
 	}
+
 	//acccept reject
+	public function ApplicationAccept($id)
+	{
+		$updateThis = Application::where('id', $id)->first();
+		$updateThis->status = 'accepted';
+		$updateThis->save();
+
+		return redirect('programme/application/'.$updateThis->programme_id);
+	}
+
+	public function ApplicationReject($id)
+	{
+		$updateThis = Application::where('id', $id)->first();
+		$updateThis->status = 'Rejected';
+		$updateThis->save();
+
+		return redirect('programme/application/'.$id);
+	}
 
 
 
@@ -120,15 +148,16 @@ class ProgrammeController extends Controller
 		$level= Auth::user()->getLevel();
 		$UserID= Auth::user()->getID();
 		$ldate = date('Y-m-d H:i:s');
-		$ApplicantID = Application::where('users_id', $UserID);
+		$ApplicantID = Applicant::where('users_id', $UserID)->first();
 		
 		if ($level=="Applicant"){
 			$newA = new Application;
-			$newA->applicant_id = $ApplicantID;
+			$newA->applicant_id = $ApplicantID->id;
 			$newA->programme_id = $id;
 			$newA->applicationdate = $ldate;
 			$newA->status = "new";
 			$newA->save();
+			return view('/');
 		}else{
 			return view('/welcome');
 		}

@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Qualification;
+use App\QualificationObtained;
+use App\applicant;
 use App\Subject;
+use App\Result;
 use App\User;
 
 class QualificationController extends Controller
@@ -161,17 +164,12 @@ class QualificationController extends Controller
                 # code...   
                 $newSub =  new Subject;
                 $newSub->subjectName = $request->name;
-                $newSub->typeScore = $request->typeScore;
+                $newSub->typeScore = "100";
                 $newSub->save();
             }
 
             return redirect('admin/subject');
         }        
-
-
-    //suggest qualification
-    //store suggest
-    
 
     //applicant
     public function applicantQualification()
@@ -185,22 +183,62 @@ class QualificationController extends Controller
         //if he is An Admin for Applicant
         if ($level=="Applicant"){
             //create the view with data array
-            return view('/AdminSys/qualification/obtain', ['data'=>$All]);
+            return view('/applicantSys/qualification/home', ['data'=>$All]);
         }else{
             // if not. redirect to welcome page 
             return redirect('/');
         }
     }
 
-    //obtain
-    //check applicant status
-    //check subject applicant
-    //calculate qualification
-        //qualification calculation rule 
-            //trim string
-            //create calculation model
-        //calculate from appplicant subject
-    //obtain or fail
+    public function ApplicantQualificationObtain($id)
+    {
+        //user  level
+        $level = Auth::user()->getLevel();
+        //user id
+        $userid = Auth::user()->getID();
+        //select qualification with id
+        $data = Qualification::where('id',$id)->first();
+        //applicant id
+        $applicantid = Applicant::where('users_id',$userid)->first();
+
+        //reult with applicant id
+        $res = Result::where('applicant_id',$applicantid->id)->get();
+
+        //if he is An Admin for Applicant
+        if ($level=="Applicant"){
+            $int = (int) filter_var($data->resultCalcDescription, FILTER_SANITIZE_NUMBER_INT);
+            if($res->count()>=$int){
+                $resAvg = Result::where('applicant_id',$applicantid->id)
+                ->orderBy('score', 'DESC')
+                ->limit($int)
+                ->avg('score');
+                if ($resAvg>=$data->minimumScore) {
+                    $Search = QualificationObtained::where('qualification_id', $id)
+                        ->where('applicant_id',$applicantid->id)->first();
+                    if(empty($Search)){
+                        $new = new QualificationObtained;
+                        $new->overallScore = $resAvg;
+                        $new->applicant_id = $applicantid->id;
+                        $new->qualification_id = $id;
+                        $new->save();
+                        return redirect('/');    
+                    }else{
+                        $new = QualificationObtained::where('id', $Search->id)->first();
+                        $new->overallScore = $resAvg;
+                        $new->save();
+                        return redirect('/');
+                    }
+                }else{
+                    return redirect('/');
+                }
+            }else{
+                return redirect('/');
+            }
+        }else{
+            // if not. redirect to welcome page 
+            return redirect('/');
+        }
+    }
 
 
     //admin uni

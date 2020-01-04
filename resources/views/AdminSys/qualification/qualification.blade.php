@@ -87,7 +87,7 @@
                         <tbody>
                             @foreach($data as $p)
                             <tr>
-                                <th scope="row">{{$p->id}}</th>
+                                <th scope="row">{{$loop->iteration}}</th>
                                 <td>{{$p->qulificationName}}</td>
                                 <td>{{$p->resultCalcDescription}}<br/>
                                     Min Score {{$p->minimumScore}}<br/>

@@ -27,7 +27,7 @@
         <a class="nav-link" href="{{ url('/') }}">
             {{ __('Quallification') }}
         </a>
-        <a class="nav-link" href="{{ url('/') }}">
+        <a class="nav-link" href="{{ url('applicant/qualification') }}">
             {{ __('Qualification Obtain') }}
         </a>
     </div>
@@ -65,6 +65,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">Qualification Obtain</div>
@@ -80,11 +81,20 @@
                     <table class="table table-striped table-light">
                         <thead>
                             <tr>
+                                <th scope="col">#</th>
                                 <th scope="col">Qualification</th>
+                                <th scope="col">Overall Score</th>
                                 <th scope="col">#</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($Qua as $p)
+                            <tr>
+                                <th>{{$loop->iteration}}</th>
+                                <td>{{$p->qualification->qulificationName}}</td>
+                                <td>{{$p->overallscore}}</td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -106,11 +116,19 @@
                     <table class="table table-striped table-light">
                         <thead>
                             <tr>
+                                <th scope="col">#</th>
                                 <th scope="col">Programme Name</th>
                                 <th scope="col">University Name</th>
                                 <th scope="col">#</th>
                             </tr>
                         </thead>
+                            @foreach($App as $p)
+                            <tr>
+                                <th>{{$loop->iteration}}</th>
+                                <td>{{$p->applayTo->programmename}}</td>
+                                <td>{{$p->applayTo->Uni->UniName}}</td>
+                            </tr>
+                            @endforeach
                         <tbody>
                         </tbody>
                     </table>

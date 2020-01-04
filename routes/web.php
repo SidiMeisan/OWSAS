@@ -77,6 +77,11 @@ Route::post('programme/store', 'ProgrammeController@UniAddProg');
 //edit form
 Route::get('programme/edit/{id}', 'ProgrammeController@UniAddProgrammeEditForm');
 Route::post('programme/Estore', 'ProgrammeController@UniEditProg');
+//Applcation list on a programme
+Route::get('programme/application/{id}', 'ProgrammeController@ApplicationList');
+//accept or reject
+Route::get('programme/accept/{id}', 'ProgrammeController@ApplicationAccept');
+Route::get('programme/reject/{id}', 'ProgrammeController@ApplicationReject');
 
 
 
@@ -99,5 +104,10 @@ Route::get('applicant/university', 'UniversityController@ApplicantUniversity');
 
 //programme
 Route::get('applicant/programme', 'ProgrammeController@ApplicantProgramme');
-Route::get('applicant/programme/applay/{id}', 'ProgrammeController@ApplicantProgrammeApplay');
+Route::get('applicant/programme/applay/{id}', 
+	'ProgrammeController@ApplicantProgrammeApplay');
+
+//Qualification
+Route::get('applicant/qualification', 'QualificationController@applicantQualification');
+Route::get('applicant/qualification/{id}', 'QualificationController@ApplicantQualificationObtain');
 

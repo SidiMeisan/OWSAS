@@ -27,7 +27,7 @@
         <a class="nav-link" href="{{ url('/') }}">
             {{ __('Quallification') }}
         </a>
-        <a class="nav-link" href="{{ url('/') }}">
+        <a class="nav-link" href="{{ url('applicant/qualification') }}">
             {{ __('Qualification Obtain') }}
         </a>
     </div>
@@ -61,7 +61,6 @@
 </li>
 @endsection
 
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -80,7 +79,7 @@
                     <table class="table table-striped table-light">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
+                                <th scope="col">#</th>
                                 <th scope="col">University Name</th>
                                 <th scope="col">#</th>
                             </tr>
@@ -89,7 +88,7 @@
                             @foreach($datas as $data)
                             <a href="{{url('#')}}">
                             <tr>
-                                <th>{{$data->id}}</th>
+                                <th>{{$loop->iteration}}</th>
                                 <th>{{$data->UniName}}</th>
                             </tr>
                             </a>

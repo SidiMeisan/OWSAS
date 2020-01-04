@@ -27,7 +27,7 @@
         <a class="nav-link" href="{{ url('/') }}">
             {{ __('Quallification') }}
         </a>
-        <a class="nav-link" href="{{ url('/') }}">
+        <a class="nav-link" href="{{ url('applicant/qualification') }}">
             {{ __('Qualification Obtain') }}
         </a>
     </div>
@@ -81,7 +81,7 @@
                     <table class="table table-striped table-light">
                         <thead>
                             <tr>
-                                <th scope="col">id</th>
+                                <th scope="col">#</th>
                                 <th scope="col">Subject Name</th>
                                 <th scope="col">Score</th>
                                 <th scope="col">#</th>
@@ -90,7 +90,7 @@
                         <tbody>
                             @foreach($data as $p)
                             <tr>
-                                <th scope="row">{{$p->id}}</th>
+                                <th scope="row">{{$loop->iteration}}</th>
                                 <td>
                                     {{$p->subjects->subjectName}}
                                 </td>

@@ -41,7 +41,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Programme</div>
+                <div class="card-header">Application</div>
 
                 <div class="card-body">
                     <!--@if (session('status'))
@@ -57,17 +57,24 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Date</th>
-                                <th scope="col">#</th>
+                                <th scope="col">Status</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach($Prog as $p)
+                            @foreach($apl as $p)
                             <tr>
-                                <th scope="row">{{$p->id}}</th>
-                                <td>{{$p->name}}</td>
+                                <th scope="row">{{$loop->iteration}}</th>
+                                <td>{{$p->applicant->users->name}}</td>
                                 <td>{{$p->applicationdate}}</td>
                                 <td>{{$p->status}}</td>
+                                <td>
+                                    <a href="{{ url('programme/accept/'.$p->id) }}">accept
+                                    </a>
+                                    |
+                                    <a href="{{ url('programme/reject/'.$p->id) }}">Reject
+                                    </a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

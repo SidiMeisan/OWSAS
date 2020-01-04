@@ -79,6 +79,7 @@
                     <table class="table table-striped table-light">
                         <thead>
                             <tr>
+                                <TH scope="col">#</TH>
                                 <th scope="col">University</th>
                                 <th scope="col">#</th>
                             </tr>
@@ -86,6 +87,7 @@
                         <tbody>
                             @foreach($uni as $p)
                             <tr>
+                                <th>{{$loop->iteration}}</th>
                                 <th>{{$p->UniName}}</th>
                                 <td>#</td>
                             </tr>
