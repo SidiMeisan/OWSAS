@@ -107,14 +107,16 @@ class ApplicationController extends Controller
             return redirect('/');
         }
     }
-
     //result form
+    //form
     public function resultForm()
     {
         //user  level
         $level= Auth::user()->getLevel();
+
         //get user id
         $userid= Auth::user()->getID();
+
         //applicant id
         $idApplicant = Applicant::where('users_id', $userid)
                                 ->first();

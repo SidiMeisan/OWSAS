@@ -24,6 +24,9 @@ class ProgrammeController extends Controller
     		return redirect('/');
     	}
     	//select all program from thathave uni id
+    	if ($level!="AdminUni"){
+    		return redirect('/');
+    	}
     	$userid = Auth::user()->id;
     	$id = UniAdmin::where('users_id', $userid)->first();
 		$AllProg = Programme::where('university_id', $id->university_id)
