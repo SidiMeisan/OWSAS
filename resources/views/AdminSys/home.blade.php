@@ -34,6 +34,21 @@
 </li>
 
 <li class="nav-item dropdown">
+    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ url('/') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        Subject<span class="caret"></span>
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a class="nav-link" href="{{ url('admin/subject') }}">
+            {{ __('Subject') }}
+        </a>
+        <a class="nav-link" href="{{ url('admin/subject/form') }}">
+            {{ __('Add Subject') }}
+        </a>
+    </div>
+</li>
+
+<li class="nav-item dropdown">
     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ url('university/home') }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
         {{Auth::user()->name}}<span class="caret"></span>
     </a>
@@ -64,6 +79,7 @@
                     <table class="table table-striped table-light">
                         <thead>
                             <tr>
+                                <TH scope="col">#</TH>
                                 <th scope="col">University</th>
                                 <th scope="col">#</th>
                             </tr>
@@ -71,6 +87,7 @@
                         <tbody>
                             @foreach($uni as $p)
                             <tr>
+                                <th>{{$loop->iteration}}</th>
                                 <th>{{$p->UniName}}</th>
                                 <td>#</td>
                             </tr>

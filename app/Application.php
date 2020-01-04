@@ -8,13 +8,13 @@ class Application extends Model
 {
 	protected $table = 'application';
 
-	protected $fillable = ['applicant_id','programme_id','applicationdate', 'status', 'score'];
+	protected $fillable = ['applicant_id','programme_id','applicationdate', 'status'];
 
 	public function applicant(){
-		return $this->belongsTo('App\Applicant');
+		return $this->belongsTo('App\Applicant', 'applicant_id');
 	}
 
 	public function applayTo(){
-		return $this->belongsTo('App\Programme');
+		return $this->belongsTo('App\Programme', 'programme_id');
 	}
 }

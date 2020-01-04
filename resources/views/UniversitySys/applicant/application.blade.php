@@ -41,7 +41,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Programme</div>
+                <div class="card-header">Application</div>
 
                 <div class="card-body">
                     <!--@if (session('status'))
@@ -56,27 +56,24 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">description</th>
                                 <th scope="col">Date</th>
-                                <th scope="col">Application</th>
-                                <th scope="col">#</th>
+                                <th scope="col">Status</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach($Prog as $p)
+                            @foreach($apl as $p)
                             <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
-                                <td>{{$p->programmename}}</td>
-                                <td>{{$p->description}}</td>
-                                <td>{{$p->closingdate}}</td>
+                                <td>{{$p->applicant->users->name}}</td>
+                                <td>{{$p->applicationdate}}</td>
+                                <td>{{$p->status}}</td>
                                 <td>
-                                    <a href="{{ url('programme/application/'.$p->id) }}">{{$p->Apply->count()}}
+                                    <a href="{{ url('programme/accept/'.$p->id) }}">accept
                                     </a>
-                                </td>
-                                <td><span class="glyphicon glyphicon-cog">
-                                    <a href="{{ url('programme/edit/'.$p->id) }}">Edit</a> 
-                                    </span>
+                                    |
+                                    <a href="{{ url('programme/reject/'.$p->id) }}">Reject
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach

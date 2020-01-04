@@ -11,6 +11,11 @@ class Programme extends Model
 	protected $fillable = ['university_id', 'programmename', 'description', 'closingdate'];
 
 	public function Uni(){
-		return $this->belongsTo('App\University');
+		return $this->belongsTo('App\University', 'university_id');
+	}
+
+	public function Apply()
+	{
+		return $this->hasMany('App\Application', 'programme_id');
 	}
 }

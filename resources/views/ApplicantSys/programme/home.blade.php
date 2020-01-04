@@ -61,49 +61,12 @@
 </li>
 @endsection
 
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">Qualification Obtain</div>
-
-                <div class="card-body">
-                    <!--@if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!-->
-                    <table class="table table-striped table-light">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Qualification</th>
-                                <th scope="col">Overall Score</th>
-                                <th scope="col">#</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($Qua as $p)
-                            <tr>
-                                <th>{{$loop->iteration}}</th>
-                                <td>{{$p->qualification->qulificationName}}</td>
-                                <td>{{$p->overallscore}}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">Application</div>
+                <div class="card-header">University</div>
 
                 <div class="card-body">
                     <!--@if (session('status'))
@@ -117,19 +80,28 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Programme Name</th>
+                                <th scope="col">Programme name</th>
                                 <th scope="col">University Name</th>
+                                <th scope="col">Number of Applications</th>
                                 <th scope="col">#</th>
                             </tr>
                         </thead>
-                            @foreach($App as $p)
+                        <tbody>
+                            @foreach($datas as $data)
+                            <a href="{{url('#')}}">
                             <tr>
                                 <th>{{$loop->iteration}}</th>
-                                <td>{{$p->applayTo->programmename}}</td>
-                                <td>{{$p->applayTo->Uni->UniName}}</td>
+                                <th>{{$data->programmename}}</th>
+                                <th>{{$data->Uni->UniName}}</th>
+                                <th>{{$data->Apply->count()}}</th>
+                                <th>
+                                    <a href="{{url('applicant/programme/applay/'.$data->id)}}">
+                                        applay
+                                    </a>
+                                </th>
                             </tr>
+                            </a>
                             @endforeach
-                        <tbody>
                         </tbody>
                     </table>
                 </div>
