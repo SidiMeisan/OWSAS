@@ -38,20 +38,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    # Mengambil Level User
     public function getLevel()
     {
       return $this->level;
     }
 
+    # Mengambil User Id 
     public function getID()
     {
       return $this->id;
     }
 
+    # Memiliki Admin
     public function IsAdminUni(){
         return $this->has('App\UniAdmin');
     }
 
+    # Memiliki Aplicant
     public function IsAplicant(){
         return $this->has('App\Applicant', 'users_id');
     }

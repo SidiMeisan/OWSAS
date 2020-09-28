@@ -66,7 +66,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">University</div>
+                <div class="card-header">Qualification</div>
 
                 <div class="card-body">
                     <!--@if (session('status'))
@@ -80,22 +80,19 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Programme name</th>
-                                <th scope="col">University Name</th>
-                                <th scope="col">Number of Applications</th>
-                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Overall result</th>
+                                <th scope="col">Grading system</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($datas as $data)
-                            <a href="{{url('#')}}">
+                            @foreach($Qua as $p)
                             <tr>
-                                <td>{{$data->id}}</td>
-                                <td>{{$data->programmename}}</td>
-                                <td>{{$data->Uni->UniName}}</td>
-                                <td>{{$data->Apply->count()}}</td>
+                                <th scope="row">{{$loop->iteration}}</th>
+                                <td>{{$p->qualification->qulificationName}}</td>
+                                <td>{{$p->overallscore}}</td>
+                                <td>{{$p->qualification->gradelist}}</td>
                             </tr>
-                            </a>
                             @endforeach
                         </tbody>
                     </table>

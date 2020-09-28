@@ -109,5 +109,6 @@ Route::get('applicant/programme/applay/{id}',
 
 //Qualification
 Route::get('applicant/qualification', 'QualificationController@applicantQualification');
+Route::get('applicant/qualification/obtain', 'QualificationController@ApplicantAllQualificationObtain');
 Route::get('applicant/qualification/{id}', 'QualificationController@ApplicantQualificationObtain');
 

@@ -23,7 +23,7 @@ class ProgrammeController extends Controller
     	if ($level!="AdminUni"){
     		return redirect('/');
     	}
-    	//select all program from thathave uni id
+    	//select all program from that have uni id
     	if ($level!="AdminUni"){
     		return redirect('/');
     	}
@@ -172,8 +172,8 @@ class ProgrammeController extends Controller
 		$level= Auth::user()->getLevel();
 
 		if($level == "Applicant"){
-			$data = Programme::all();
-	        return view('/ApplicantSys/programme/home',['datas'=> $data]);
+			$datas = Programme::all();
+	        return view('/ApplicantSys/programme/home',['datas'=> $datas]);
 		}else{
 			return view('/welcome');
 		}

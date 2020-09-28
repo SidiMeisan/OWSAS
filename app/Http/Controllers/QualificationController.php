@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\Qualification;
 use App\QualificationObtained;
-use App\applicant;
+use App\Applicant;
 use App\Subject;
 use App\Result;
 use App\User;
@@ -204,7 +204,7 @@ class QualificationController extends Controller
         //reult with applicant id
         $res = Result::where('applicant_id',$applicantid->id)->get();
 
-        //if he is An Admin for Applicant
+        //if he is An Applicant
         if ($level=="Applicant"){
             $int = (int) filter_var($data->resultCalcDescription, FILTER_SANITIZE_NUMBER_INT);
             if($res->count()>=$int){
@@ -237,6 +237,30 @@ class QualificationController extends Controller
         }else{
             // if not. redirect to welcome page 
             return redirect('/');
+        }
+    }
+
+    public function ApplicantAllQualificationObtain()
+    {
+
+        # code...
+        $level = Auth::user()->getLevel();
+        $userid = Auth::user()->getID();
+        //search applicant profile
+        $found = Applicant::where('users_id','=',$userid)->count();
+        $foundid = Applicant::where('users_id','=',$userid)->first();
+
+        if ($found == 0) {
+            //if the user registered as applicant
+            //the user will have to creatte appplicant data
+            return view('ApplicantSys/Applicant/form');
+        } else {
+            $Qua = QualificationObtained::where('applicant_id',$foundid->id)->get();
+            if ($level=="Applicant") {
+                return view('ApplicantSys/qualification/obtain',['Qua'=>$Qua]);
+            }else{
+                return view('/welcome');
+            }
         }
     }
 

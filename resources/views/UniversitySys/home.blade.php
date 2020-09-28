@@ -71,7 +71,7 @@
                                 <td>{{$p->description}}</td>
                                 <td>{{$p->closingdate}}</td>
                                 <td>
-                                    <a href="{{ url('programme/application/'.$p->id) }}">{{$p->Apply->count()}}
+                                    <a href="{{ url('programme/application/'.$p->id) }}">{{$p->Apply->count()?? 0}}
                                     </a>
                                 </td>
                                 <td><span class="glyphicon glyphicon-cog">

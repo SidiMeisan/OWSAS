@@ -31,16 +31,17 @@ class ApplicationController extends Controller
         //search applicant profile
         $found = Applicant::where('users_id','=',$userid)->count();
         $foundid = Applicant::where('users_id','=',$userid)->first();
-
-        $App = Application::where('applicant_id',$foundid->id)->get();
-        $Qua = QualificationObtained::where('applicant_id',$foundid->id)->get();
+        
 
         if ($found == 0) {
+            //if the user registered as applicant
+            //the user will have to creatte appplicant data
             return view('ApplicantSys/Applicant/form');
         } else {
             # code...
-            //if the user registered as applicant
-            //the user will have to creatte appplicant data
+
+            $App = Application::where('applicant_id',$foundid->id)->get();
+            $Qua = QualificationObtained::where('applicant_id',$foundid->id)->get();
             if ($level=="Applicant") {
                 return view('ApplicantSys/home',['App'=>$App,'Qua'=>$Qua]);
             }else{
