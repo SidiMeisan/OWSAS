@@ -8,51 +8,51 @@ Erico Rahmad Darmanto &&
 Sidi Meisanjaya
 
 # git instruction
-…or create a new repository on the command line
+... Clone the project 
 
-git init
+git clone https://github.com/SidiMeisan/OWSAS.git
 
-git add README.md
+cd OWSAS
 
-git commit -m "first commit"
+...See all branch on this project
 
-git remote add origin https://github.com/SidiMeisan/CreatePOS.git
+git branch -a
 
-git push -u origin master
+...If you just want to take a quick peek at an upstream branch, you can check it out directly:
+
+git checkout origin/Name-of-branch
+
+...But if you want to work on that branch, you'll need to create a local tracking branch which is done automatically by:
+
+$ git checkout Name-of-branch
+
+...At this point, things are getting pretty crazy, so run gitk to see what's going on:
+gitk --all &
+
+## installation
+## Windows users:
+
+for XAMPP
+- Download Composer: https://getcomposer.org/
 
 
-…or push an existing repository from the command line
-
-git remote add origin https://github.com/SidiMeisan/CreatePOS.git
-
-git push -u origin master
-
-
-…or import code from another repository
-You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
-
-# installation
-#Windows users:
-
+for WAMP
 - Download wamp: http://www.wampserver.com/en/
 - Download and extract cmder mini: https://github.com/cmderdev/cmder/releases/download/v1.1.4.1/cmder_mini.zip
 - Update windows environment variable path to point to your php install folder (inside wamp installation dir) (here is how you can do this http://stackoverflow.com/questions/17727436/how-to-properly-set-php-environment-variable-to-run-commands-in-git-bash)
-- cmder will be refered as console
+cmder will be refered as console
 
-#Mac Os, Ubuntu and windows users continue here:
+##XAMPP WAMP and users continue here:
+- import `exportl.sql` from folder database
+- open Command Prompt and go to project folder
+- create `.env` from `.env.example`  (cd your project root directory and run `mv .env.example .env`)
+- change `.env` 
+- Run `composer install` or php ```composer.phar install```
+- Run `php artisan key:generate`
+- Run `php artisan serve`
 
-- Create a database locally named homestead utf8_general_ci (in This case we use db_owsas)
-- Download composer https://getcomposer.org/download/
-- Pull Laravel/php project from git provider.
-- Rename .env.example file to .envinside your project root and fill the database information. (windows wont let you do it, so you have to open your console cd your project root directory and run mv .env.example .env )
-- Open the console and cd your project root directory
-- Run composer install or php composer.phar install
-- Run php artisan key:generate
-- Run php artisan migrate
-- Run php artisan db:seed to run seeders, if any.
-- Run php artisan serve
 #####You can now access your project at localhost:8000 :)
 
-#If for some reason your project stop working do these:
-- composer install
-- php artisan migrate
+## If for some reason your project stop working do these:
+- `composer install`
+- `php artisan migrate`
